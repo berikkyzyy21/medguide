@@ -1,1 +1,241 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedGuide — Learn Your Body</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f9fb;
+      color: #183746;
+      line-height: 1.6;
+    }
+    header {
+      background: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e1edf0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo { color: #087f8c; font-size: 25px; font-weight: bold; }
+    nav a {
+      color: #34515d;
+      text-decoration: none;
+      margin: 0 9px;
+    }
+    select {
+      padding: 9px;
+      border: 1px solid #cbdde2;
+      border-radius: 8px;
+    }
+    .hero {
+      padding: 75px 8%;
+      background: linear-gradient(120deg, #e1f5f5, #edf5ff);
+      text-align: center;
+    }
+    .hero h1 { font-size: clamp(32px, 6vw, 54px); margin: 0 0 15px; }
+    .hero p { max-width: 650px; margin: 0 auto 25px; font-size: 18px; }
+    .button {
+      display: inline-block;
+      background: #087f8c;
+      color: white;
+      padding: 13px 23px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+    section { padding: 48px 8%; }
+    h2 { color: #087f8c; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      border: 1px solid #e1edf0;
+    }
+    .card h3 { margin-top: 0; color: #087f8c; }
+    .card button {
+      background: #087f8c;
+      color: white;
+      border: 0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .panel {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 700px;
+    }
+    footer {
+      background: #173d4b;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">MedGuide</div>
+  <nav>
+    <a href="#home" data-i="home">Home</a>
+    <a href="#library" data-i="library">Library</a>
+    <a href="#quiz" data-i="quiz">Quiz</a>
+    <a href="#about" data-i="about">About</a>
+  </nav>
+  <select id="language" aria-label="Language">
+    <option value="en">English</option>
+    <option value="ru" selected>Русский</option>
+    <option value="kz">Қазақша</option>
+  </select>
+</header>
+
+<main>
+  <div class="hero" id="home">
+    <h1 data-i="title">Понимай своё здоровье</h1>
+    <p data-i="intro">Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.</p>
+    <a class="button" href="#library" data-i="start">Начать изучение</a>
+  </div>
+
+  <section id="library">
+    <h2 data-i="libraryTitle">Медицинская библиотека</h2>
+    <p data-i="libraryIntro">Изучай системы человеческого организма простым языком.</p>
+    <div class="cards">
+      <article class="card">
+        <h3 data-i="nervous">Нервная система</h3>
+        <p data-i="nervousText">Мозг, спинной мозг и нервы помогают организму получать и передавать информацию.</p>
+      </article>
+      <article class="card">
+        <h3 data-i="heart">Сердечно-сосудистая система</h3>
+        <p data-i="heartText">Сердце и кровеносные сосуды доставляют кислород и питательные вещества.</p>
+      </article>
+      <article class="card">
+        <h3 data-i="lungs">Дыхательная система</h3>
+        <p data-i="lungsText">Лёгкие помогают организму получать кислород и удалять углекислый газ.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2 data-i="quizTitle">Проверь свои знания</h2>
+    <div class="panel">
+      <p data-i="question">Какой орган перекачивает кровь по организму?</p>
+      <button onclick="answer(0)" data-i="wrong">Лёгкие</button>
+      <button onclick="answer(1)" data-i="right">Сердце</button>
+      <button onclick="answer(0)" data-i="wrong2">Желудок</button>
+      <p id="result" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 data-i="aboutTitle">О проекте MedGuide</h2>
+    <p data-i="aboutText">MedGuide — образовательная платформа для подростков, которая помогает изучать анатомию и основы здоровья на казахском, русском и английском языках.</p>
+    <p><strong data-i="disclaimer">Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.</strong></p>
+  </section>
+</main>
+
+<footer>MedGuide · Learn. Explore. Understand.</footer>
+
+<script>
+const translations = {
+  ru: {
+    home:"Главная", library:"Библиотека", quiz:"Тест", about:"О проекте",
+    title:"Понимай своё здоровье",
+    intro:"Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.",
+    start:"Начать изучение", libraryTitle:"Медицинская библиотека",
+    libraryIntro:"Изучай системы человеческого организма простым языком.",
+    nervous:"Нервная система",
+    nervousText:"Мозг, спинной мозг и нервы помогают организму получать и передавать информацию.",
+    heart:"Сердечно-сосудистая система",
+    heartText:"Сердце и кровеносные сосуды доставляют кислород и питательные вещества.",
+    lungs:"Дыхательная система",
+    lungsText:"Лёгкие помогают организму получать кислород и удалять углекислый газ.",
+    quizTitle:"Проверь свои знания",
+    question:"Какой орган перекачивает кровь по организму?",
+    wrong:"Лёгкие", right:"Сердце", wrong2:"Желудок",
+    aboutTitle:"О проекте MedGuide",
+    aboutText:"MedGuide — образовательная платформа для подростков, которая помогает изучать анатомию и основы здоровья на казахском, русском и английском языках.",
+    disclaimer:"Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.",
+    correct:"Правильно! Сердце перекачивает кровь.",
+    incorrect:"Попробуй ещё раз!"
+  },
+  en: {
+    home:"Home", library:"Library", quiz:"Quiz", about:"About",
+    title:"Understand Your Health",
+    intro:"Explore the human body, discover medical science and test your knowledge with MedGuide.",
+    start:"Start learning", libraryTitle:"Medical Library",
+    libraryIntro:"Explore the systems of the human body in simple language.",
+    nervous:"Nervous System",
+    nervousText:"The brain, spinal cord and nerves help the body receive and send information.",
+    heart:"Cardiovascular System",
+    heartText:"The heart and blood vessels transport oxygen and nutrients around the body.",
+    lungs:"Respiratory System",
+    lungsText:"The lungs help the body take in oxygen and remove carbon dioxide.",
+    quizTitle:"Test Your Knowledge",
+    question:"Which organ pumps blood around the body?",
+    wrong:"Lungs", right:"Heart", wrong2:"Stomach",
+    aboutTitle:"About MedGuide",
+    aboutText:"MedGuide is an educational platform for teenagers to explore anatomy and health in Kazakh, Russian and English.",
+    disclaimer:"These materials are for education and do not replace advice from a medical professional.",
+    correct:"Correct! The heart pumps blood.",
+    incorrect:"Try again!"
+  },
+  kz: {
+    home:"Басты бет", library:"Кітапхана", quiz:"Тест", about:"Жоба туралы",
+    title:"Өз денсаулығыңды түсін",
+    intro:"Адам ағзасын зертте, медицина ғылымын таны және MedGuide арқылы біліміңді тексер.",
+    start:"Оқуды бастау", libraryTitle:"Медициналық кітапхана",
+    libraryIntro:"Адам ағзасының жүйелерін қарапайым тілмен зертте.",
+    nervous:"Жүйке жүйесі",
+    nervousText:"Ми, жұлын және жүйкелер ағзаға ақпаратты қабылдауға және жеткізуге көмектеседі.",
+    heart:"Жүрек-қан тамырлары жүйесі",
+    heartText:"Жүрек пен қан тамырлары оттегі мен қоректік заттарды тасымалдайды.",
+    lungs:"Тыныс алу жүйесі",
+    lungsText:"Өкпе ағзаға оттегін қабылдауға және көмірқышқыл газын шығаруға көмектеседі.",
+    quizTitle:"Біліміңді тексер",
+    question:"Қанды бүкіл ағзаға айдайтын мүше қайсы?",
+    wrong:"Өкпе", right:"Жүрек", wrong2:"Асқазан",
+    aboutTitle:"MedGuide жобасы туралы",
+    aboutText:"MedGuide — жасөспірімдерге анатомия мен денсаулық негіздерін қазақ, орыс және ағылшын тілдерінде үйренуге көмектесетін білім беру платформасы.",
+    disclaimer:"Материалдар білім алуға арналған және медицина маманының кеңесін алмастырмайды.",
+    correct:"Дұрыс! Жүрек қанды айдайды.",
+    incorrect:"Қайталап көр!"
+  }
+};
+
+let currentLanguage = "ru";
+
+function changeLanguage(lang) {
+  currentLanguage = lang;
+  document.documentElement.lang = lang === "kz" ? "kk" : lang;
+  document.querySelectorAll("[data-i]").forEach(element => {
+    const key = element.dataset.i;
+    if (translations[lang][key]) element.textContent = translations[lang][key];
+  });
+  document.getElementById("result").textContent = "";
+}
+
+document.getElementById("language").addEventListener("change", event => {
+  changeLanguage(event.target.value);
+});
+
+function answer(correct) {
+  const t = translations[currentLanguage];
+  document.getElementById("result").textContent =
+    correct ? t.correct : t.incorrect;
+}
+</script>
+</body>
+</html>
