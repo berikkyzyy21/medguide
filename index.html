@@ -1,322 +1,286 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="MedGuide — медицинская образовательная платформа для подростков.">
-<title>MedGuide | Learn Your Body</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="MedGuide — трёхъязычная образовательная платформа о человеческом организме.">
+<title>MedGuide — Medical Learning</title>
 <style>
-:root {
-  --teal: #087f8c;
-  --navy: #183746;
-  --pale: #e8f7f7;
-  --bg: #f4f9fb;
-  --white: #fff;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--navy);
-  line-height: 1.65;
-}
-header {
-  background: var(--white);
-  padding: 16px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #dce9ed;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-.logo { color: var(--teal); font-size: 25px; font-weight: 800; }
-nav { display: flex; gap: 16px; flex-wrap: wrap; }
-nav a { color: var(--navy); text-decoration: none; font-weight: 600; }
-nav a:hover { color: var(--teal); }
-select, button {
-  font: inherit;
-  padding: 10px 13px;
-  border: 1px solid #cbdde2;
-  border-radius: 9px;
-}
-.hero {
-  padding: 85px 8%;
-  text-align: center;
-  background: linear-gradient(125deg, #dff6f4, #eaf0ff);
-}
-.eyebrow {
-  color: var(--teal);
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.12; margin: 15px 0; }
-.hero p { max-width: 690px; margin: 0 auto 25px; font-size: 19px; }
-.button {
-  display: inline-block;
-  background: var(--teal);
-  color: white;
-  padding: 13px 22px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
-.button:hover, button:hover { opacity: .88; }
-section { padding: 55px 8%; }
-h2 { font-size: clamp(26px, 4vw, 36px); color: var(--teal); margin-top: 0; }
-.section-intro { max-width: 720px; }
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 25px;
-}
-.card {
-  background: white;
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid #e0ebee;
-  box-shadow: 0 5px 20px rgba(20, 60, 70, .04);
-}
-.card-icon { font-size: 34px; }
-.card h3 { color: var(--teal); margin-bottom: 8px; }
-.card p { margin-bottom: 0; }
-.soft { background: var(--pale); }
-.panel {
-  background: white;
-  padding: 25px;
-  border-radius: 16px;
-  border: 1px solid #e0ebee;
-  max-width: 720px;
-}
-button { background: var(--teal); color: white; cursor: pointer; margin: 5px 4px 5px 0; }
-#result { font-weight: bold; }
-footer { background: #173d4b; color: white; text-align: center; padding: 28px 8%; }
-.small { font-size: 14px; opacity: .9; }
-@media (max-width: 600px) {
-  header { position: static; }
-  nav { width: 100%; gap: 12px; }
-  section { padding: 38px 6%; }
-  .hero { padding: 60px 6%; }
-}
+:root{--teal:#087f8c;--navy:#183746;--pale:#e8f7f7;--bg:#f4f9fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--navy);line-height:1.7}
+header{background:white;padding:15px 6%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;border-bottom:1px solid #dce9ed;position:sticky;top:0;z-index:5}
+.logo{font-size:25px;font-weight:bold;color:var(--teal)}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:var(--navy);text-decoration:none;font-weight:bold}
+select,input,button{font:inherit;padding:10px 13px;border:1px solid #cbdde2;border-radius:9px}
+button{background:var(--teal);color:white;cursor:pointer;border:0}
+button:hover{opacity:.88}
+.hero{padding:75px 8%;text-align:center;background:linear-gradient(125deg,#dff6f4,#eaf0ff)}
+.hero h1{font-size:clamp(36px,6vw,58px);line-height:1.15}
+.hero p{font-size:19px;max-width:750px;margin:20px auto}
+.eyebrow{color:var(--teal);font-weight:bold;letter-spacing:2px}
+section{padding:48px 8%}
+h2{color:var(--teal);font-size:30px}
+.intro{max-width:800px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:25px}
+.card,.panel{background:white;border:1px solid #e0ebee;border-radius:15px;padding:22px;box-shadow:0 4px 18px #1837460a}
+.card h3{color:var(--teal);margin:8px 0}
+.card-icon{font-size:34px}
+.card button{margin-top:12px}
+.soft{background:var(--pale)}
+.search{width:100%;max-width:600px;background:white}
+#lesson{display:none}
+#lessonContent{max-width:900px}
+.lesson-block{background:white;border-radius:14px;padding:20px;margin:15px 0;border:1px solid #dce9ed}
+.lesson-block h3{color:var(--teal)}
+.back{margin-bottom:18px}
+.quiz-option{display:block;width:100%;text-align:left;margin:9px 0;background:#eaf5f6;color:var(--navy);border:1px solid #cbdde2}
+.quiz-option:disabled{opacity:1}
+#quizResult{font-weight:bold;margin-top:15px}
+.word{padding:13px;border-bottom:1px solid #dce9ed}
+footer{background:#173d4b;color:white;text-align:center;padding:30px}
+.small{font-size:13px}
+@media(max-width:600px){header{position:static}section{padding:35px 6%}.hero{padding:55px 6%}}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="logo">✚ MedGuide</div>
-  <nav aria-label="Main navigation">
-    <a href="#home" id="navHome">Главная</a>
-    <a href="#library" id="navLibrary">Библиотека</a>
-    <a href="#quiz" id="navQuiz">Тест</a>
-    <a href="#about" id="navAbout">О проекте</a>
-  </nav>
-  <label>
-    <span class="small" id="languageLabel">Язык</span>
-    <select id="language" aria-label="Choose language">
-      <option value="ru">Русский</option>
-      <option value="kz">Қазақша</option>
-      <option value="en">English</option>
-    </select>
-  </label>
+ <div class="logo">✚ MedGuide</div>
+ <nav>
+  <a href="#home" data-t="home">Главная</a>
+  <a href="#library" data-t="library">Библиотека</a>
+  <a href="#quiz" data-t="quiz">Тесты</a>
+  <a href="#dictionary" data-t="dictionary">Словарь</a>
+  <a href="#about" data-t="about">О проекте</a>
+ </nav>
+ <select id="language" aria-label="Language">
+  <option value="ru">Русский</option>
+  <option value="kz">Қазақша</option>
+  <option value="en">English</option>
+ </select>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="eyebrow">Medical education · Ages 14–18</div>
-    <h1 id="heroTitle">Понимай своё здоровье</h1>
-    <p id="heroText">Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.</p>
-    <a class="button" href="#library" id="heroButton">Начать изучение →</a>
-  </section>
+<section class="hero" id="home">
+ <div class="eyebrow">MEDICAL EDUCATION · AGES 14–18</div>
+ <h1 data-t="heroTitle">Понимай своё здоровье</h1>
+ <p data-t="heroText">Изучай человеческое тело, медицинскую науку и удивительные процессы, которые происходят внутри организма.</p>
+ <a href="#library"><button data-t="start">Начать обучение</button></a>
+</section>
 
-  <section id="library">
-    <h2 id="libraryTitle">Медицинская библиотека</h2>
-    <p class="section-intro" id="libraryIntro">Познакомься с основными системами организма. Это начало большой библиотеки MedGuide.</p>
-    <div class="cards">
-      <article class="card">
-        <div class="card-icon">🧠</div>
-        <h3 id="brainTitle">Нервная система</h3>
-        <p id="brainText">Мозг, спинной мозг и нервы помогают организму получать информацию и отвечать на изменения вокруг.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">❤️</div>
-        <h3 id="heartTitle">Сердечно-сосудистая система</h3>
-        <p id="heartText">Сердце перекачивает кровь, а кровеносные сосуды доставляют кислород и питательные вещества.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">🫁</div>
-        <h3 id="lungsTitle">Дыхательная система</h3>
-        <p id="lungsText">Дыхательная система помогает получать кислород и удалять углекислый газ.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">🦴</div>
-        <h3 id="bonesTitle">Скелетная система</h3>
-        <p id="bonesText">Кости поддерживают тело, защищают некоторые органы и вместе с мышцами помогают двигаться.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">🧬</div>
-        <h3 id="geneticsTitle">Генетика и ДНК</h3>
-        <p id="geneticsText">Узнай, как ДНК хранит генетическую информацию и как наследуются некоторые признаки.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">🧴</div>
-        <h3 id="skinTitle">Кожа и дерматология</h3>
-        <p id="skinText">Изучи строение кожи, её защитные функции и основы научного подхода к здоровью кожи.</p>
-      </article>
-    </div>
-  </section>
+<section id="library">
+ <h2 data-t="libraryTitle">Медицинская библиотека</h2>
+ <p class="intro" data-t="libraryIntro">Выбери систему организма, чтобы открыть учебный материал.</p>
+ <input class="search" id="search" placeholder="Поиск по библиотеке..." data-placeholder="search">
+ <div class="cards" id="systemCards"></div>
+</section>
 
-  <section class="soft" id="quiz">
-    <h2 id="quizTitle">Проверь свои знания</h2>
-    <div class="panel">
-      <p id="question">Какой орган перекачивает кровь по организму?</p>
-      <div id="answers">
-        <button data-answer="wrong" id="option1">Лёгкие</button>
-        <button data-answer="right" id="option2">Сердце</button>
-        <button data-answer="wrong" id="option3">Желудок</button>
-      </div>
-      <p id="result" aria-live="polite"></p>
-      <button id="retry" hidden>Попробовать ещё раз</button>
-    </div>
-  </section>
+<section id="lesson" class="soft">
+ <button class="back" id="backButton" data-t="back">← Назад к библиотеке</button>
+ <div id="lessonContent"></div>
+</section>
 
-  <section id="about">
-    <h2 id="aboutTitle">О проекте MedGuide</h2>
-    <p class="section-intro" id="aboutText">MedGuide — образовательный проект для подростков, которые хотят понятным языком изучать анатомию, биологию и основы здоровья на казахском, русском и английском языках.</p>
-    <div class="card">
-      <strong id="disclaimerTitle">Важное примечание</strong>
-      <p id="disclaimer">Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.</p>
-    </div>
-  </section>
+<section id="quiz" class="soft">
+ <h2 data-t="quizTitle">Проверь свои знания</h2>
+ <p data-t="quizIntro">Ответь на 10 вопросов по основам анатомии.</p>
+ <div class="panel">
+  <div id="quizProgress"></div>
+  <h3 id="question"></h3>
+  <div id="options"></div>
+  <p id="quizResult" aria-live="polite"></p>
+  <button id="nextQuestion" hidden data-t="next">Следующий вопрос</button>
+  <button id="restartQuiz" hidden data-t="restart">Пройти ещё раз</button>
+ </div>
+</section>
+
+<section id="dictionary">
+ <h2 data-t="dictionaryTitle">Медицинский словарь</h2>
+ <p data-t="dictionaryIntro">Основные термины на трёх языках.</p>
+ <div class="panel" id="dictionaryList"></div>
+</section>
+
+<section id="about">
+ <h2 data-t="aboutTitle">О проекте MedGuide</h2>
+ <div class="panel">
+  <p data-t="aboutText">MedGuide — образовательный проект для подростков, которые хотят изучать анатомию, биологию и основы здоровья на казахском, русском и английском языках.</p>
+  <h3 data-t="missionTitle">Наша миссия</h3>
+  <p data-t="missionText">Сделать медицинские знания более понятными, доступными и интересными для подростков.</p>
+  <p><strong data-t="disclaimer">Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.</strong></p>
+ </div>
+ <h3 data-t="sourcesTitle">Учебные источники</h3>
+ <ul>
+  <li><a href="https://openstax.org/details/books/anatomy-and-physiology-2e" target="_blank" rel="noopener">OpenStax — Anatomy and Physiology</a></li>
+  <li><a href="https://medlineplus.gov/" target="_blank" rel="noopener">MedlinePlus</a></li>
+  <li><a href="https://kidshealth.org/" target="_blank" rel="noopener">Nemours KidsHealth</a></li>
+ </ul>
+</section>
 </main>
-
 <footer>
-  <strong>MedGuide</strong> · <span id="footerText">Изучай. Исследуй. Понимай.</span>
-  <p class="small">© 2026 MedGuide · <span id="footerNote">Образовательный проект</span></p>
+ <strong>MedGuide</strong>
+ <p data-t="footer">Learn. Explore. Understand.</p>
+ <p class="small">© 2026 MedGuide · Educational project</p>
 </footer>
 
 <script>
-const translations = {
-  ru: {
-    navHome:"Главная", navLibrary:"Библиотека", navQuiz:"Тест", navAbout:"О проекте",
-    languageLabel:"Язык", heroTitle:"Понимай своё здоровье",
-    heroText:"Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.",
-    heroButton:"Начать изучение →", libraryTitle:"Медицинская библиотека",
-    libraryIntro:"Познакомься с основными системами организма. Это начало большой библиотеки MedGuide.",
-    brainTitle:"Нервная система", brainText:"Мозг, спинной мозг и нервы помогают организму получать информацию и отвечать на изменения вокруг.",
-    heartTitle:"Сердечно-сосудистая система", heartText:"Сердце перекачивает кровь, а кровеносные сосуды доставляют кислород и питательные вещества.",
-    lungsTitle:"Дыхательная система", lungsText:"Дыхательная система помогает получать кислород и удалять углекислый газ.",
-    bonesTitle:"Скелетная система", bonesText:"Кости поддерживают тело, защищают некоторые органы и вместе с мышцами помогают двигаться.",
-    geneticsTitle:"Генетика и ДНК", geneticsText:"Узнай, как ДНК хранит генетическую информацию и как наследуются некоторые признаки.",
-    skinTitle:"Кожа и дерматология", skinText:"Изучи строение кожи, её защитные функции и основы научного подхода к здоровью кожи.",
-    quizTitle:"Проверь свои знания", question:"Какой орган перекачивает кровь по организму?",
-    option1:"Лёгкие", option2:"Сердце", option3:"Желудок",
-    correct:"Правильно! Сердце перекачивает кровь.", incorrect:"Не совсем. Попробуй ещё раз!",
-    retry:"Попробовать ещё раз", aboutTitle:"О проекте MedGuide",
-    aboutText:"MedGuide — образовательный проект для подростков, которые хотят понятным языком изучать анатомию, биологию и основы здоровья на казахском, русском и английском языках.",
-    disclaimerTitle:"Важное примечание", disclaimer:"Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.",
-    footerText:"Изучай. Исследуй. Понимай.", footerNote:"Образовательный проект"
-  },
-  kz: {
-    navHome:"Басты бет", navLibrary:"Кітапхана", navQuiz:"Тест", navAbout:"Жоба туралы",
-    languageLabel:"Тіл", heroTitle:"Өз денсаулығыңды түсін",
-    heroText:"Адам ағзасын зертте, медицина ғылымымен таныс және MedGuide арқылы біліміңді тексер.",
-    heroButton:"Оқуды бастау →", libraryTitle:"Медициналық кітапхана",
-    libraryIntro:"Ағзаның негізгі жүйелерімен таныс. Бұл — MedGuide кітапханасының бастамасы.",
-    brainTitle:"Жүйке жүйесі", brainText:"Ми, жұлын және жүйкелер ақпаратты қабылдауға және қоршаған ортадағы өзгерістерге жауап беруге көмектеседі.",
-    heartTitle:"Жүрек-қан тамырлары жүйесі", heartText:"Жүрек қанды айдайды, ал қан тамырлары оттегі мен қоректік заттарды тасымалдайды.",
-    lungsTitle:"Тыныс алу жүйесі", lungsText:"Тыныс алу жүйесі оттегін қабылдауға және көмірқышқыл газын шығаруға көмектеседі.",
-    bonesTitle:"Қаңқа жүйесі", bonesText:"Сүйектер денеге тірек болады, кейбір мүшелерді қорғайды және бұлшықеттермен бірге қозғалысқа көмектеседі.",
-    geneticsTitle:"Генетика және ДНҚ", geneticsText:"ДНҚ генетикалық ақпаратты қалай сақтайтынын және кейбір белгілердің қалай тұқым қуалайтынын зертте.",
-    skinTitle:"Тері және дерматология", skinText:"Терінің құрылымын, қорғаныш қызметін және тері денсаулығына ғылыми көзқарасты зертте.",
-    quizTitle:"Біліміңді тексер", question:"Қанды бүкіл ағзаға айдайтын мүше қайсы?",
-    option1:"Өкпе", option2:"Жүрек", option3:"Асқазан",
-    correct:"Дұрыс! Жүрек қанды айдайды.", incorrect:"Дұрыс емес. Қайталап көр!",
-    retry:"Қайта көру", aboutTitle:"MedGuide жобасы туралы",
-    aboutText:"MedGuide — анатомияны, биологияны және денсаулық негіздерін қазақ, орыс және ағылшын тілдерінде түсінікті түрде үйренуге арналған жасөспірімдерге арналған білім беру жобасы.",
-    disclaimerTitle:"Маңызды ескерту", disclaimer:"Материалдар білім алуға арналған және медицина маманының кеңесін алмастырмайды.",
-    footerText:"Үйрен. Зертте. Түсін.", footerNote:"Білім беру жобасы"
-  },
-  en: {
-    navHome:"Home", navLibrary:"Library", navQuiz:"Quiz", navAbout:"About",
-    languageLabel:"Language", heroTitle:"Understand Your Health",
-    heroText:"Explore the human body, discover medical science and test your knowledge with MedGuide.",
-    heroButton:"Start learning →", libraryTitle:"Medical Library",
-    libraryIntro:"Explore the main systems of the human body. This is the beginning of the MedGuide learning library.",
-    brainTitle:"Nervous System", brainText:"The brain, spinal cord and nerves help the body receive information and respond to changes around it.",
-    heartTitle:"Cardiovascular System", heartText:"The heart pumps blood, while blood vessels transport oxygen and nutrients.",
-    lungsTitle:"Respiratory System", lungsText:"The respiratory system helps the body take in oxygen and remove carbon dioxide.",
-    bonesTitle:"Skeletal System", bonesText:"Bones support the body, protect some organs and work with muscles to help movement.",
-    geneticsTitle:"Genetics and DNA", geneticsText:"Learn how DNA stores genetic information and how some traits are inherited.",
-    skinTitle:"Skin and Dermatology", skinText:"Explore the structure of the skin, its protective functions and a scientific approach to skin health.",
-    quizTitle:"Test Your Knowledge", question:"Which organ pumps blood around the body?",
-    option1:"Lungs", option2:"Heart", option3:"Stomach",
-    correct:"Correct! The heart pumps blood.", incorrect:"Not quite. Try again!",
-    retry:"Try again", aboutTitle:"About MedGuide",
-    aboutText:"MedGuide is an educational project for teenagers who want to learn about anatomy, biology and health in simple language in Kazakh, Russian and English.",
-    disclaimerTitle:"Important note", disclaimer:"These materials are for education and do not replace advice from a medical professional.",
-    footerText:"Learn. Explore. Understand.", footerNote:"Educational project"
-  }
+const systems=[
+{id:"nervous",icon:"🧠",ru:"Нервная система",kz:"Жүйке жүйесі",en:"Nervous System",
+intro:{ru:"Нервная система принимает информацию, обрабатывает её и координирует реакции организма.",kz:"Жүйке жүйесі ақпаратты қабылдайды, өңдейді және ағзаның жауап әрекеттерін үйлестіреді.",en:"The nervous system receives and processes information and coordinates the body's responses."},
+parts:{ru:"Главные части: головной мозг, спинной мозг и периферические нервы. Нейроны передают сигналы, а клетки глии поддерживают работу нервной ткани.",kz:"Негізгі бөліктері: бас миы, жұлын және шеткі жүйкелер. Нейрондар сигналдарды жеткізеді, ал глия жасушалары жүйке тінін қолдайды.",en:"Main parts include the brain, spinal cord and peripheral nerves. Neurons carry signals, while glial cells support nervous tissue."},
+function:{ru:"Система участвует в движении, восприятии чувств, памяти, обучении, регуляции внутренних органов и поддержании равновесия.",kz:"Бұл жүйе қозғалысқа, сезімге, есте сақтауға, оқуға, ішкі мүшелерді реттеуге және тепе-теңдікті сақтауға қатысады.",en:"It helps with movement, sensation, memory, learning, regulation of internal organs and balance."},
+fact:{ru:"Рефлекс — быстрая автоматическая реакция на раздражитель. Некоторые рефлексы помогают защищать организм.",kz:"Рефлекс — тітіркендіргішке берілетін жылдам автоматты жауап. Кейбір рефлекстер ағзаны қорғауға көмектеседі.",en:"A reflex is a fast, automatic response to a stimulus. Some reflexes help protect the body."}},
+{id:"cardio",icon:"❤️",ru:"Сердечно-сосудистая система",kz:"Жүрек-қан тамырлары жүйесі",en:"Cardiovascular System",
+intro:{ru:"Система кровообращения перемещает кровь, доставляя клеткам кислород и питательные вещества.",kz:"Қанайналым жүйесі қанды тасымалдап, жасушаларға оттегі мен қоректік заттарды жеткізеді.",en:"The circulatory system moves blood and delivers oxygen and nutrients to cells."},
+parts:{ru:"Сердце состоит из четырёх камер: двух предсердий и двух желудочков. Сосуды делятся на артерии, вены и капилляры.",kz:"Жүрек төрт қуыстан тұрады: екі жүрекше және екі қарынша. Қан тамырлары артерияларға, веналарға және қылтамырларға бөлінеді.",en:"The heart has four chambers: two atria and two ventricles. Blood vessels include arteries, veins and capillaries."},
+function:{ru:"Правая сторона сердца направляет кровь к лёгким, левая — к остальным тканям тела. Клапаны помогают крови двигаться в правильном направлении.",kz:"Жүректің оң жағы қанды өкпеге, сол жағы дене тіндеріне бағыттайды. Қақпақшалар қанның дұрыс бағытта қозғалуына көмектеседі.",en:"The right side sends blood to the lungs; the left side sends it to the body. Valves help keep blood moving in the correct direction."},
+fact:{ru:"Капилляры — самые мелкие сосуды. Через их тонкие стенки происходит обмен веществ между кровью и тканями.",kz:"Қылтамырлар — ең ұсақ қан тамырлары. Олардың жұқа қабырғалары арқылы қан мен тіндер арасында зат алмасады.",en:"Capillaries are the smallest blood vessels. Their thin walls allow exchange between blood and tissues."}},
+{id:"resp",icon:"🫁",ru:"Дыхательная система",kz:"Тыныс алу жүйесі",en:"Respiratory System",
+intro:{ru:"Дыхательная система обеспечивает поступление кислорода и удаление углекислого газа.",kz:"Тыныс алу жүйесі оттегінің түсуін және көмірқышқыл газының шығарылуын қамтамасыз етеді.",en:"The respiratory system brings oxygen into the body and removes carbon dioxide."},
+parts:{ru:"Воздух проходит через носовую полость, глотку, гортань, трахею и бронхи, а затем попадает в лёгкие.",kz:"Ауа мұрын қуысынан, жұтқыншақтан, көмейден, кеңірдектен және бронхтардан өтіп, өкпеге жетеді.",en:"Air passes through the nasal cavity, pharynx, larynx, trachea and bronchi before reaching the lungs."},
+function:{ru:"В альвеолах кислород переходит из воздуха в кровь, а углекислый газ — из крови в воздух для выдоха.",kz:"Альвеолаларда оттегі ауадан қанға, ал көмірқышқыл газы қаннан ауаға өтеді.",en:"In the alveoli, oxygen moves from air into blood, while carbon dioxide moves from blood into the air to be exhaled."},
+fact:{ru:"Альвеолы — крошечные воздушные мешочки с очень тонкими стенками и большой общей площадью поверхности.",kz:"Альвеолалар — қабырғалары өте жұқа, жалпы беткі ауданы үлкен ұсақ ауа қапшықтары.",en:"Alveoli are tiny air sacs with very thin walls and a large total surface area."}},
+{id:"digest",icon:"🍎",ru:"Пищеварительная система",kz:"Ас қорыту жүйесі",en:"Digestive System",
+intro:{ru:"Пищеварительная система расщепляет пищу на вещества, которые организм может всасывать и использовать.",kz:"Ас қорыту жүйесі тағамды ағза сіңіріп, пайдалана алатын заттарға ыдыратады.",en:"The digestive system breaks food into substances the body can absorb and use."},
+parts:{ru:"К основным органам относятся рот, пищевод, желудок, тонкая и толстая кишка. Печень, желчный пузырь и поджелудочная железа помогают пищеварению.",kz:"Негізгі мүшелері: ауыз, өңеш, асқазан, аш және тоқ ішек. Бауыр, өт қабы және ұйқы безі ас қорытуға көмектеседі.",en:"Main organs include the mouth, oesophagus, stomach, small intestine and large intestine. The liver, gallbladder and pancreas also help digestion."},
+function:{ru:"Ферменты расщепляют крупные молекулы пищи. Большая часть питательных веществ всасывается в тонкой кишке.",kz:"Ферменттер тағамның ірі молекулаларын ыдыратады. Қоректік заттардың көп бөлігі аш ішекте сіңеді.",en:"Enzymes break down large food molecules. Most nutrient absorption takes place in the small intestine."},
+fact:{ru:"Печень выполняет множество функций, включая образование желчи и обработку питательных веществ.",kz:"Бауыр көптеген қызмет атқарады, соның ішінде өт түзу және қоректік заттарды өңдеу бар.",en:"The liver performs many functions, including making bile and processing nutrients."}},
+{id:"skeletal",icon:"🦴",ru:"Скелетная система",kz:"Қаңқа жүйесі",en:"Skeletal System",
+intro:{ru:"Скелет поддерживает тело, защищает некоторые органы и вместе с мышцами обеспечивает движение.",kz:"Қаңқа денеге тірек болады, кейбір мүшелерді қорғайды және бұлшықеттермен бірге қозғалысты қамтамасыз етеді.",en:"The skeleton supports the body, protects some organs and works with muscles to produce movement."},
+parts:{ru:"Скелет включает кости, суставы, хрящи и связки. Костная ткань постоянно обновляется благодаря работе специальных клеток.",kz:"Қаңқа сүйектерден, буындардан, шеміршектерден және байламдардан тұрады. Сүйек тіні арнайы жасушалардың көмегімен үнемі жаңарып отырады.",en:"The skeleton includes bones, joints, cartilage and ligaments. Bone tissue is constantly renewed by specialised cells."},
+function:{ru:"Кости защищают мозг и органы грудной клетки. Костный мозг участвует в образовании клеток крови, а кости служат запасом минералов.",kz:"Сүйектер миды және кеуде қуысындағы мүшелерді қорғайды. Сүйек кемігі қан жасушаларын түзеді, ал сүйектер минералдардың қоры болады.",en:"Bones protect the brain and chest organs. Bone marrow helps produce blood cells, and bones store minerals."},
+fact:{ru:"Кость — живая ткань, которая может изменяться и восстанавливаться.",kz:"Сүйек — өзгеріп, қалпына келе алатын тірі тін.",en:"Bone is living tissue that can change and repair itself."}},
+{id:"muscular",icon:"💪",ru:"Мышечная система",kz:"Бұлшықет жүйесі",en:"Muscular System",
+intro:{ru:"Мышцы обеспечивают движение, поддерживают положение тела и участвуют в работе внутренних органов.",kz:"Бұлшықеттер қозғалысты қамтамасыз етеді, дене қалпын сақтайды және ішкі мүшелердің жұмысына қатысады.",en:"Muscles produce movement, maintain posture and help internal organs work."},
+parts:{ru:"Существуют скелетные, гладкие и сердечная мышцы. Скелетные мышцы обычно управляются сознательно, а гладкие работают автоматически.",kz:"Қаңқа, бірыңғай салалы және жүрек бұлшықеттері бар. Қаңқа бұлшықеттері көбіне саналы түрде, ал бірыңғай салалы бұлшықеттер автоматты түрде жұмыс істейді.",en:"There are skeletal, smooth and cardiac muscles. Skeletal muscles are usually under conscious control, while smooth muscles work automatically."},
+function:{ru:"Мышечные волокна сокращаются благодаря взаимодействию белков актина и миозина. Для этого клеткам нужна энергия.",kz:"Бұлшықет талшықтары актин мен миозин ақуыздарының әрекеттесуі арқылы жиырылады. Бұл үдеріс үшін жасушаларға энергия қажет.",en:"Muscle fibres contract through interactions between actin and myosin proteins. Cells need energy for this process."},
+fact:{ru:"Сердечная мышца обладает собственным ритмом сокращений и работает непрерывно.",kz:"Жүрек бұлшықеті өз ырғағымен жиырылып, үздіксіз жұмыс істейді.",en:"The cardiac muscle has its own contraction rhythm and works continuously."}},
+{id:"endocrine",icon:"🧪",ru:"Эндокринная система",kz:"Эндокриндік жүйе",en:"Endocrine System",
+intro:{ru:"Эндокринная система использует гормоны — химические сигналы, которые регулируют работу органов.",kz:"Эндокриндік жүйе мүшелердің жұмысын реттейтін химиялық сигналдар — гормондарды пайдаланады.",en:"The endocrine system uses hormones, chemical signals that regulate organ functions."},
+parts:{ru:"К железам относятся гипофиз, щитовидная железа, надпочечники и эндокринная часть поджелудочной железы.",kz:"Бұл жүйеге гипофиз, қалқанша без, бүйрек үсті бездері және ұйқы безінің эндокриндік бөлігі жатады.",en:"Glands include the pituitary, thyroid, adrenal glands and the endocrine part of the pancreas."},
+function:{ru:"Гормоны участвуют в регуляции роста, обмена веществ, реакции на стресс и уровня глюкозы в крови.",kz:"Гормондар өсуге, зат алмасуға, күйзеліске жауап беруге және қандағы глюкоза деңгейін реттеуге қатысады.",en:"Hormones help regulate growth, metabolism, responses to stress and blood glucose levels."},
+fact:{ru:"Инсулин помогает клеткам получать глюкозу из крови и участвует в регулировании её уровня.",kz:"Инсулин жасушаларға қандағы глюкозаны пайдалануға көмектеседі және оның деңгейін реттейді.",en:"Insulin helps cells take up glucose and plays a role in regulating blood glucose levels."}},
+{id:"immune",icon:"🛡️",ru:"Иммунная система",kz:"Иммундық жүйе",en:"Immune System",
+intro:{ru:"Иммунная система распознаёт многие угрозы и помогает организму защищаться от инфекций.",kz:"Иммундық жүйе көптеген қауіптерді танып, ағзаны инфекциялардан қорғауға көмектеседі.",en:"The immune system recognises many threats and helps protect the body from infections."},
+parts:{ru:"В защите участвуют белые клетки крови, антитела, костный мозг, тимус, селезёнка и лимфатические узлы.",kz:"Қорғанысқа ақ қан жасушалары, антиденелер, сүйек кемігі, айырша без, көкбауыр және лимфа түйіндері қатысады.",en:"White blood cells, antibodies, bone marrow, thymus, spleen and lymph nodes take part in defence."},
+function:{ru:"Врождённая защита реагирует быстро и широко. Приобретённый иммунитет распознаёт определённые антигены и может формировать иммунологическую память.",kz:"Туа біткен қорғаныс жылдам әрі жалпы әсер етеді. Жүре пайда болған иммунитет нақты антигендерді танып, иммундық жады қалыптастыра алады.",en:"Innate defence responds quickly and broadly. Adaptive immunity recognises specific antigens and can form immune memory."},
+fact:{ru:"Вакцинация обучает иммунную систему распознавать определённые возбудители без необходимости переносить соответствующую инфекцию.",kz:"Вакцинация иммундық жүйені белгілі қоздырғыштарды тануға үйретеді.",en:"Vaccination helps the immune system recognise specific pathogens without having to experience the corresponding infection."}},
+{id:"urinary",icon:"🚰",ru:"Мочевыделительная система",kz:"Зәр шығару жүйесі",en:"Urinary System",
+intro:{ru:"Эта система фильтрует кровь, регулирует количество воды и электролитов и выводит некоторые продукты обмена.",kz:"Бұл жүйе қанды сүзеді, су мен электролиттердің мөлшерін реттейді және зат алмасу қалдықтарын шығарады.",en:"This system filters blood, regulates water and electrolytes and removes some waste products."},
+parts:{ru:"Основные органы — две почки, два мочеточника, мочевой пузырь и мочеиспускательный канал.",kz:"Негізгі мүшелері — екі бүйрек, екі несепағар, қуық және зәр шығару өзегі.",en:"The main organs are two kidneys, two ureters, the bladder and the urethra."},
+function:{ru:"В нефронах почек фильтруется кровь, затем нужные вещества возвращаются в неё, а оставшаяся жидкость образует мочу.",kz:"Бүйрек нефрондарында қан сүзіледі, қажетті заттар қайтадан қанға өтеді, ал қалған сұйықтық зәр түзеді.",en:"In kidney nephrons, blood is filtered, useful substances are reabsorbed and the remaining fluid becomes urine."},
+fact:{ru:"Почки помогают поддерживать кислотно-щелочной баланс и участвуют в регулировании артериального давления.",kz:"Бүйрек қышқыл-сілті тепе-теңдігін сақтауға және қан қысымын реттеуге қатысады.",en:"The kidneys help maintain acid-base balance and take part in regulating blood pressure."}},
+{id:"reproductive",icon:"🔬",ru:"Репродуктивная система",kz:"Көбею жүйесі",en:"Reproductive System",
+intro:{ru:"Репродуктивная система участвует в размножении и выработке половых клеток и гормонов.",kz:"Көбею жүйесі ұрпақ жалғастыруға, жыныс жасушалары мен гормондарын өндіруге қатысады.",en:"The reproductive system is involved in reproduction and the production of sex cells and hormones."},
+parts:{ru:"Органы репродуктивной системы различаются у разных полов и включают органы, производящие половые клетки.",kz:"Көбею жүйесінің мүшелері жынысқа байланысты ерекшеленеді және жыныс жасушаларын түзетін мүшелерді қамтиды.",en:"The organs differ between sexes and include structures that produce reproductive cells."},
+function:{ru:"Система связана с половым созреванием, гормональными изменениями и возможностью размножения.",kz:"Бұл жүйе жыныстық жетілуге, гормондық өзгерістерге және ұрпақ жалғастыру мүмкіндігіне байланысты.",en:"The system is related to puberty, hormonal changes and the ability to reproduce."},
+fact:{ru:"Половое созревание начинается в разном возрасте и развивается индивидуально.",kz:"Жыныстық жетілу әр адамда әртүрлі жаста басталып, жеке қарқынмен жүреді.",en:"Puberty begins at different ages and develops at an individual pace."}},
+{id:"skin",icon:"🧴",ru:"Покровная система",kz:"Жабын жүйесі",en:"Integumentary System",
+intro:{ru:"Кожа и её структуры образуют внешний защитный барьер организма.",kz:"Тері және оның құрылымдары ағзаның сыртқы қорғаныш қабатын құрайды.",en:"The skin and its structures form the body's outer protective barrier."},
+parts:{ru:"Кожа состоит из эпидермиса и дермы; под ней находится подкожная ткань. К её придаткам относятся волосы, ногти и железы.",kz:"Тері эпидермис пен дермадан тұрады, ал оның астында теріасты тіні орналасады. Теріге шаш, тырнақ және бездер де жатады.",en:"The skin consists of the epidermis and dermis, with subcutaneous tissue beneath. Hair, nails and glands are also skin structures."},
+function:{ru:"Кожа защищает от внешней среды, участвует в восприятии ощущений и помогает регулировать температуру тела.",kz:"Тері сыртқы ортадан қорғайды, сезімдерді қабылдайды және дене температурасын реттеуге көмектеседі.",en:"The skin protects the body, senses the environment and helps regulate body temperature."},
+fact:{ru:"Меланин — пигмент, который влияет на цвет кожи и помогает защищать клетки от ультрафиолетового излучения.",kz:"Меланин — тері түсіне әсер ететін және жасушаларды ультракүлгін сәуледен қорғауға көмектесетін пигмент.",en:"Melanin is a pigment that affects skin colour and helps protect cells from ultraviolet radiation."}},
+{id:"lymphatic",icon:"💧",ru:"Лимфатическая система",kz:"Лимфа жүйесі",en:"Lymphatic System",
+intro:{ru:"Лимфатическая система возвращает избыток тканевой жидкости в кровь и участвует в иммунной защите.",kz:"Лимфа жүйесі тіндердегі артық сұйықтықты қанға қайтарады және иммундық қорғанысқа қатысады.",en:"The lymphatic system returns excess tissue fluid to the blood and contributes to immune defence."},
+parts:{ru:"Она включает лимфатические сосуды, лимфатические узлы, селезёнку, тимус и другие лимфоидные ткани.",kz:"Оған лимфа тамырлары, лимфа түйіндері, көкбауыр, айырша без және басқа лимфоидты тіндер жатады.",en:"It includes lymphatic vessels, lymph nodes, the spleen, thymus and other lymphoid tissues."},
+function:{ru:"Лимфатические узлы фильтруют лимфу. В них находятся иммунные клетки, которые помогают распознавать чужеродные вещества.",kz:"Лимфа түйіндері лимфаны сүзеді. Оларда бөгде заттарды тануға көмектесетін иммундық жасушалар бар.",en:"Lymph nodes filter lymph. They contain immune cells that help recognise foreign substances."},
+fact:{ru:"Лимфатическая система не имеет центрального насоса, подобного сердцу: движение лимфы поддерживается сокращениями мышц и другими механизмами.",kz:"Лимфа жүйесінде жүрек сияқты орталық сорғы жоқ: лимфа бұлшықеттердің жиырылуы және басқа механизмдер арқылы қозғалады.",en:"The lymphatic system has no central pump like the heart; lymph movement is supported by muscle contractions and other mechanisms."}}
+];
+
+const translations={
+ru:{home:"Главная",library:"Библиотека",quiz:"Тесты",dictionary:"Словарь",about:"О проекте",heroTitle:"Понимай своё здоровье",heroText:"Изучай человеческое тело, медицинскую науку и удивительные процессы, которые происходят внутри организма.",start:"Начать обучение",libraryTitle:"12 систем человеческого организма",libraryIntro:"Выбери систему организма, чтобы открыть учебный материал.",search:"Поиск по библиотеке...",back:"← Назад к библиотеке",quizTitle:"Проверь свои знания",quizIntro:"Ответь на 10 вопросов по основам анатомии.",next:"Следующий вопрос",restart:"Пройти ещё раз",dictionaryTitle:"Медицинский словарь",dictionaryIntro:"Основные термины на трёх языках.",aboutTitle:"О проекте MedGuide",aboutText:"MedGuide — образовательный проект для подростков, которые хотят изучать анатомию, биологию и основы здоровья на казахском, русском и английском языках.",missionTitle:"Наша миссия",missionText:"Сделать медицинские знания более понятными, доступными и интересными для подростков.",disclaimer:"Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.",sourcesTitle:"Учебные источники",footer:"Изучай. Исследуй. Понимай.",intro:"Введение",parts:"Строение и основные части",function:"Как работает система",fact:"Научный факт",correct:"Правильно!",wrong:"Не совсем. Правильный ответ: ",score:"Твой результат: ",finished:"Тест завершён!"},
+kz:{home:"Басты бет",library:"Кітапхана",quiz:"Тесттер",dictionary:"Сөздік",about:"Жоба туралы",heroTitle:"Өз денсаулығыңды түсін",heroText:"Адам ағзасын, медицина ғылымын және ағзада жүретін таңғажайып үдерістерді зертте.",start:"Оқуды бастау",libraryTitle:"Адам ағзасының 12 жүйесі",libraryIntro:"Оқу материалын ашу үшін ағза жүйесін таңда.",search:"Кітапханадан іздеу...",back:"← Кітапханаға оралу",quizTitle:"Біліміңді тексер",quizIntro:"Анатомия негіздері бойынша 10 сұраққа жауап бер.",next:"Келесі сұрақ",restart:"Қайта өту",dictionaryTitle:"Медициналық сөздік",dictionaryIntro:"Үш тілдегі негізгі терминдер.",aboutTitle:"MedGuide жобасы туралы",aboutText:"MedGuide — анатомияны, биологияны және денсаулық негіздерін қазақ, орыс және ағылшын тілдерінде үйренуге арналған білім беру жобасы.",missionTitle:"Біздің мақсатымыз",missionText:"Медициналық білімді жасөспірімдерге түсінікті, қолжетімді және қызықты ету.",disclaimer:"Материалдар білім алуға арналған және медицина маманының кеңесін алмастырмайды.",sourcesTitle:"Оқу дереккөздері",footer:"Үйрен. Зертте. Түсін.",intro:"Кіріспе",parts:"Құрылысы мен негізгі бөліктері",function:"Жүйе қалай жұмыс істейді",fact:"Ғылыми дерек",correct:"Дұрыс!",wrong:"Дұрыс емес. Дұрыс жауап: ",score:"Нәтижең: ",finished:"Тест аяқталды!"},
+en:{home:"Home",library:"Library",quiz:"Quizzes",dictionary:"Dictionary",about:"About",heroTitle:"Understand Your Health",heroText:"Explore the human body, medical science and the amazing processes happening inside the body.",start:"Start learning",libraryTitle:"12 Systems of the Human Body",libraryIntro:"Choose a body system to open its learning material.",search:"Search the library...",back:"← Back to library",quizTitle:"Test Your Knowledge",quizIntro:"Answer 10 questions about basic anatomy.",next:"Next question",restart:"Try again",dictionaryTitle:"Medical Dictionary",dictionaryIntro:"Key terms in three languages.",aboutTitle:"About MedGuide",aboutText:"MedGuide is an educational project for teenagers who want to learn anatomy, biology and health in Kazakh, Russian and English.",missionTitle:"Our Mission",missionText:"Make medical knowledge clearer, more accessible and more interesting for teenagers.",disclaimer:"These materials are for education and do not replace advice from a medical professional.",sourcesTitle:"Learning Sources",footer:"Learn. Explore. Understand.",intro:"Introduction",parts:"Structure and main parts",function:"How the system works",fact:"Scientific fact",correct:"Correct!",wrong:"Not quite. Correct answer: ",score:"Your score: ",finished:"Quiz completed!"}
 };
 
-const languageSelect = document.getElementById("language");
-const textIds = Object.keys(translations.ru);
+const terms=[
+["Нейрон","Нейрон","Neuron"],["Сердце","Жүрек","Heart"],["Лёгкие","Өкпе","Lungs"],["Клетка","Жасуша","Cell"],["Кровь","Қан","Blood"],["Гормон","Гормон","Hormone"],["ДНК","ДНҚ","DNA"],["Антитело","Антидене","Antibody"],["Капилляр","Қылтамыр","Capillary"],["Нефрон","Нефрон","Nephron"],["Альвеола","Альвеола","Alveolus"],["Эпидермис","Эпидермис","Epidermis"]
+];
 
-function changeLanguage(language) {
-  const dictionary = translations[language] || translations.ru;
-  document.documentElement.lang = language === "kz" ? "kk" : language;
+const questions=[
+{q:["Какой орган перекачивает кровь?","Қанды айдайтын мүше қайсы?","Which organ pumps blood?"],a:["Сердце","Жүрек","Heart"],o:[["Лёгкие","Өкпе","Lungs"],["Сердце","Жүрек","Heart"],["Желудок","Асқазан","Stomach"]],c:1},
+{q:["Где происходит газообмен в лёгких?","Өкпеде газ алмасу қайда жүреді?","Where does gas exchange occur in the lungs?"],a:["Альвеолы","Альвеолалар","Alveoli"],o:[["Трахея","Кеңірдек","Trachea"],["Альвеолы","Альвеолалар","Alveoli"],["Гортань","Көмей","Larynx"]],c:1},
+{q:["Какая клетка передаёт нервные сигналы?","Жүйке сигналдарын қандай жасуша жеткізеді?","Which cell carries nerve signals?"],a:["Нейрон","Нейрон","Neuron"],o:[["Эритроцит","Эритроцит","Red blood cell"],["Нейрон","Нейрон","Neuron"],["Тромбоцит","Тромбоцит","Platelet"]],c:1},
+{q:["Где начинается пищеварение?","Ас қорыту қайдан басталады?","Where does digestion begin?"],a:["Во рту","Ауызда","In the mouth"],o:[["В желудке","Асқазанда","In the stomach"],["Во рту","Ауызда","In the mouth"],["В толстой кишке","Тоқ ішекте","In the large intestine"]],c:1},
+{q:["Что хранит наследственную информацию?","Тұқым қуалайтын ақпаратты не сақтайды?","What stores hereditary information?"],a:["ДНК","ДНҚ","DNA"],o:[["Вода","Су","Water"],["ДНК","ДНҚ","DNA"],["Кислород","Оттегі","Oxygen"]],c:1},
+{q:["Какой орган фильтрует кровь и образует мочу?","Қанды сүзіп, зәр түзетін мүше қайсы?","Which organ filters blood and produces urine?"],a:["Почка","Бүйрек","Kidney"],o:[["Печень","Бауыр","Liver"],["Почка","Бүйрек","Kidney"],["Селезёнка","Көкбауыр","Spleen"]],c:1},
+{q:["Как называется пигмент кожи?","Тері пигменті қалай аталады?","What is the skin pigment called?"],a:["Меланин","Меланин","Melanin"],o:[["Инсулин","Инсулин","Insulin"],["Меланин","Меланин","Melanin"],["Кератин","Кератин","Keratin"]],c:1},
+{q:["Какая система использует гормоны?","Қай жүйе гормондарды пайдаланады?","Which system uses hormones?"],a:["Эндокринная","Эндокриндік","Endocrine"],o:[["Эндокринная","Эндокриндік","Endocrine"],["Скелетная","Қаңқа","Skeletal"],["Дыхательная","Тыныс алу","Respiratory"]],c:0},
+{q:["Где находятся лимфатические узлы?","Лимфа түйіндері қай жүйеге жатады?","Which system includes lymph nodes?"],a:["Лимфатическая система","Лимфа жүйесі","Lymphatic system"],o:[["Мышечная","Бұлшықет","Muscular"],["Лимфатическая система","Лимфа жүйесі","Lymphatic system"],["Пищеварительная","Ас қорыту","Digestive"]],c:1},
+{q:["Какая ткань соединяет мышцы с костями?","Бұлшықетті сүйекпен қандай тін байланыстырады?","What connects muscles to bones?"],a:["Сухожилие","Сіңір","Tendon"],o:[["Сухожилие","Сіңір","Tendon"],["Хрящ","Шеміршек","Cartilage"],["Эпидермис","Эпидермис","Epidermis"]],c:0}
+];
 
-  textIds.forEach(id => {
-    const element = document.getElementById(id);
-    if (element) element.textContent = dictionary[id];
-  });
-
-  document.getElementById("result").textContent = "";
-  document.getElementById("retry").hidden = true;
+let lang="ru",current=0,score=0,locked=false;
+const t=key=>translations[lang][key];
+function renderCards(filter=""){
+ const container=document.getElementById("systemCards");
+ container.innerHTML="";
+ systems.filter(s=>(s[lang]+" "+s.intro[lang]).toLowerCase().includes(filter.toLowerCase())).forEach(s=>{
+  const card=document.createElement("article");card.className="card";
+  card.innerHTML=`<div class="card-icon">${s.icon}</div><h3>${s[lang]}</h3><p>${s.intro[lang]}</p>`;
+  const b=document.createElement("button");b.textContent=lang==="ru"?"Открыть урок":lang==="kz"?"Сабақты ашу":"Open lesson";b.onclick=()=>openLesson(s.id);
+  card.appendChild(b);container.appendChild(card);
+ });
 }
-
-languageSelect.addEventListener("change", event => {
-  changeLanguage(event.target.value);
-});
-
-let answered = false;
-
-document.querySelectorAll("[data-answer]").forEach(button => {
-  button.addEventListener("click", () => {
-    if (answered) return;
-    answered = true;
-
-    const language = languageSelect.value;
-    const correct = button.dataset.answer === "right";
-    document.getElementById("result").textContent =
-      translations[language][correct ? "correct" : "incorrect"];
-
-    document.querySelectorAll("[data-answer]").forEach(option => {
-      option.disabled = true;
-    });
-
-    if (!correct) {
-      document.getElementById("retry").hidden = false;
-    }
-  });
-});
-
-document.getElementById("retry").addEventListener("click", () => {
-  answered = false;
-  document.getElementById("result").textContent = "";
-  document.querySelectorAll("[data-answer]").forEach(option => {
-    option.disabled = false;
-  });
-  document.getElementById("retry").hidden = true;
-});
-
-changeLanguage("ru");
+function openLesson(id){
+ const s=systems.find(x=>x.id===id);if(!s)return;
+ document.getElementById("lesson").style.display="block";
+ document.getElementById("lessonContent").innerHTML=`
+ <h2>${s.icon} ${s[lang]}</h2>
+ <div class="lesson-block"><h3>${t("intro")}</h3><p>${s.intro[lang]}</p></div>
+ <div class="lesson-block"><h3>${t("parts")}</h3><p>${s.parts[lang]}</p></div>
+ <div class="lesson-block"><h3>${t("function")}</h3><p>${s.function[lang]}</p></div>
+ <div class="lesson-block"><h3>${t("fact")}</h3><p>${s.fact[lang]}</p></div>
+ <p class="small">MedGuide · ${s[lang]}</p>`;
+ document.getElementById("lesson").scrollIntoView();
+}
+document.getElementById("backButton").onclick=()=>{document.getElementById("lesson").style.display="none";document.getElementById("library").scrollIntoView()};
+function renderDictionary(){
+ document.getElementById("dictionaryList").innerHTML=terms.map(x=>`<div class="word"><strong>${x[0]}</strong> · ${x[1]} · ${x[2]}</div>`).join("");
+}
+function showQuestion(){
+ locked=false;
+ const q=questions[current];
+ document.getElementById("quizProgress").textContent=`${current+1} / ${questions.length}`;
+ document.getElementById("question").textContent=q.q[["ru","kz","en"].indexOf(lang)];
+ document.getElementById("quizResult").textContent="";
+ document.getElementById("nextQuestion").hidden=true;
+ document.getElementById("restartQuiz").hidden=true;
+ const box=document.getElementById("options");box.innerHTML="";
+ q.o.forEach((option,i)=>{
+  const b=document.createElement("button");b.className="quiz-option";b.textContent=option[["ru","kz","en"].indexOf(lang)];
+  b.onclick=()=>chooseAnswer(i);box.appendChild(b);
+ });
+}
+function chooseAnswer(i){
+ if(locked)return;locked=true;
+ const q=questions[current],correct=i===q.c;
+ if(correct)score++;
+ document.getElementById("quizResult").textContent=correct?t("correct"):t("wrong")+q.a[["ru","kz","en"].indexOf(lang)];
+ document.querySelectorAll(".quiz-option").forEach(b=>b.disabled=true);
+ if(current<questions.length-1)document.getElementById("nextQuestion").hidden=false;
+ else{
+  document.getElementById("quizResult").textContent+=` ${t("score")}${score}/${questions.length}. ${t("finished")}`;
+  document.getElementById("restartQuiz").hidden=false;
+ }
+}
+document.getElementById("nextQuestion").onclick=()=>{current++;showQuestion()};
+document.getElementById("restartQuiz").onclick=()=>{current=0;score=0;showQuestion()};
+function changeLanguage(value){
+ lang=value;document.documentElement.lang=value==="kz"?"kk":value;
+ document.querySelectorAll("[data-t]").forEach(el=>{const key=el.dataset.t;if(t(key))el.textContent=t(key)});
+ document.getElementById("search").placeholder=t("search");
+ renderCards(document.getElementById("search").value);
+ renderDictionary();showQuestion();
+ if(document.getElementById("lesson").style.display==="block"){
+  const heading=document.querySelector("#lessonContent h2");
+  if(heading){const id=systems.find(s=>heading.textContent.includes(s[lang])||heading.textContent.includes(s.ru)||heading.textContent.includes(s.en)||heading.textContent.includes(s.kz))?.id;if(id)openLesson(id)}
+ }
+}
+document.getElementById("language").addEventListener("change",e=>changeLanguage(e.target.value));
+document.getElementById("search").addEventListener("input",e=>renderCards(e.target.value));
+renderCards();renderDictionary();showQuestion();
 </script>
 </body>
 </html>
