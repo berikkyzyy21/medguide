@@ -1,281 +1,322 @@
-
-  
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MedGuide | Medical Education</title>
+<meta name="description" content="MedGuide — медицинская образовательная платформа для подростков.">
+<title>MedGuide | Learn Your Body</title>
 <style>
+:root {
+  --teal: #087f8c;
+  --navy: #183746;
+  --pale: #e8f7f7;
+  --bg: #f4f9fb;
+  --white: #fff;
+}
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f3f8fa;
-  color: #193b4a;
-  line-height: 1.6;
+  background: var(--bg);
+  color: var(--navy);
+  line-height: 1.65;
 }
 header {
-  background: white;
-  padding: 18px 7%;
+  background: var(--white);
+  padding: 16px 6%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 18px;
   flex-wrap: wrap;
-  gap: 12px;
   border-bottom: 1px solid #dce9ed;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-.logo { font-size: 26px; font-weight: bold; color: #087f8c; }
-nav a {
-  text-decoration: none;
-  color: #31515e;
-  margin: 0 8px;
-}
+.logo { color: var(--teal); font-size: 25px; font-weight: 800; }
+nav { display: flex; gap: 16px; flex-wrap: wrap; }
+nav a { color: var(--navy); text-decoration: none; font-weight: 600; }
+nav a:hover { color: var(--teal); }
 select, button {
-  padding: 10px;
-  border-radius: 8px;
+  font: inherit;
+  padding: 10px 13px;
   border: 1px solid #cbdde2;
-}
-.hero {
-  text-align: center;
-  padding: 75px 8%;
-  background: linear-gradient(120deg,#e1f5f5,#eaf1ff);
-}
-.hero h1 { font-size: clamp(32px,6vw,54px); }
-.hero p { max-width: 650px; margin: 0 auto 25px; font-size: 18px; }
-.primary {
-  display: inline-block;
-  background: #087f8c;
-  color: white;
-  text-decoration: none;
-  padding: 13px 22px;
   border-radius: 9px;
 }
-section { padding: 45px 8%; }
-h2 { color: #087f8c; }
+.hero {
+  padding: 85px 8%;
+  text-align: center;
+  background: linear-gradient(125deg, #dff6f4, #eaf0ff);
+}
+.eyebrow {
+  color: var(--teal);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.12; margin: 15px 0; }
+.hero p { max-width: 690px; margin: 0 auto 25px; font-size: 19px; }
+.button {
+  display: inline-block;
+  background: var(--teal);
+  color: white;
+  padding: 13px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.button:hover, button:hover { opacity: .88; }
+section { padding: 55px 8%; }
+h2 { font-size: clamp(26px, 4vw, 36px); color: var(--teal); margin-top: 0; }
+.section-intro { max-width: 720px; }
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
 }
 .card {
   background: white;
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px solid #dce9ed;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e0ebee;
+  box-shadow: 0 5px 20px rgba(20, 60, 70, .04);
 }
-.card h3 { color: #087f8c; }
+.card-icon { font-size: 34px; }
+.card h3 { color: var(--teal); margin-bottom: 8px; }
+.card p { margin-bottom: 0; }
+.soft { background: var(--pale); }
 .panel {
   background: white;
-  padding: 24px;
-  border-radius: 14px;
-  max-width: 700px;
-}
-button {
-  background: #087f8c;
-  color: white;
-  border: none;
-  cursor: pointer;
-  margin: 4px;
-}
-footer {
-  text-align: center;
-  background: #173d4b;
-  color: white;
   padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e0ebee;
+  max-width: 720px;
+}
+button { background: var(--teal); color: white; cursor: pointer; margin: 5px 4px 5px 0; }
+#result { font-weight: bold; }
+footer { background: #173d4b; color: white; text-align: center; padding: 28px 8%; }
+.small { font-size: 14px; opacity: .9; }
+@media (max-width: 600px) {
+  header { position: static; }
+  nav { width: 100%; gap: 12px; }
+  section { padding: 38px 6%; }
+  .hero { padding: 60px 6%; }
 }
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo">MedGuide</div>
-  <nav>
-    <a href="#home">Главная</a>
-    <a href="#library">Библиотека</a>
-    <a href="#quiz">Тест</a>
-    <a href="#about">О проекте</a>
+  <div class="logo">✚ MedGuide</div>
+  <nav aria-label="Main navigation">
+    <a href="#home" id="navHome">Главная</a>
+    <a href="#library" id="navLibrary">Библиотека</a>
+    <a href="#quiz" id="navQuiz">Тест</a>
+    <a href="#about" id="navAbout">О проекте</a>
   </nav>
-  <select id="language">
-    <option value="ru">Русский</option>
-    <option value="kz">Қазақша</option>
-    <option value="en">English</option>
-  </select>
+  <label>
+    <span class="small" id="languageLabel">Язык</span>
+    <select id="language" aria-label="Choose language">
+      <option value="ru">Русский</option>
+      <option value="kz">Қазақша</option>
+      <option value="en">English</option>
+    </select>
+  </label>
 </header>
 
 <main>
-<div class="hero" id="home">
-  <h1 id="title">Понимай своё здоровье</h1>
-  <p id="intro">Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.</p>
-  <a class="primary" href="#library" id="start">Начать изучение</a>
-</div>
-<section id="library">
-  <h2 id="libraryTitle">Медицинская библиотека</h2>
-  <p id="libraryIntro">Изучай системы человеческого организма простым языком.</p>
-  <div class="cards">
-    <article class="card">
-      <h3 id="nervous">Нервная система</h3>
-      <p id="nervousText">Мозг, спинной мозг и нервы передают информацию.</p>
-    </article>
-    <article class="card">
-      <h3 id="heart">Сердечно-сосудистая система</h3>
-      <p id="heartText">Сердце и сосуды доставляют кислород и питательные вещества.</p>
-    </article>
-    <article class="card">
-      <h3 id="lungs">Дыхательная система</h3>
-      <p id="lungsText">Лёгкие помогают получать кислород и удалять углекислый газ.</p>
-    </article>
-  </div>
-</section>
+  <section class="hero" id="home">
+    <div class="eyebrow">Medical education · Ages 14–18</div>
+    <h1 id="heroTitle">Понимай своё здоровье</h1>
+    <p id="heroText">Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.</p>
+    <a class="button" href="#library" id="heroButton">Начать изучение →</a>
+  </section>
 
-<section id="quiz">
-  <h2 id="quizTitle">Проверь свои знания</h2>
-  <div class="panel">
-    <p id="question">Какой орган перекачивает кровь по организму?</p>
-    <button onclick="answer(false)" id="wrong">Лёгкие</button>
-    <button onclick="answer(true)" id="right">Сердце</button>
-    <button onclick="answer(false)" id="wrong2">Желудок</button>
-    <p id="result"></p>
-  </div>
-</section>
+  <section id="library">
+    <h2 id="libraryTitle">Медицинская библиотека</h2>
+    <p class="section-intro" id="libraryIntro">Познакомься с основными системами организма. Это начало большой библиотеки MedGuide.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="card-icon">🧠</div>
+        <h3 id="brainTitle">Нервная система</h3>
+        <p id="brainText">Мозг, спинной мозг и нервы помогают организму получать информацию и отвечать на изменения вокруг.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">❤️</div>
+        <h3 id="heartTitle">Сердечно-сосудистая система</h3>
+        <p id="heartText">Сердце перекачивает кровь, а кровеносные сосуды доставляют кислород и питательные вещества.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🫁</div>
+        <h3 id="lungsTitle">Дыхательная система</h3>
+        <p id="lungsText">Дыхательная система помогает получать кислород и удалять углекислый газ.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🦴</div>
+        <h3 id="bonesTitle">Скелетная система</h3>
+        <p id="bonesText">Кости поддерживают тело, защищают некоторые органы и вместе с мышцами помогают двигаться.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🧬</div>
+        <h3 id="geneticsTitle">Генетика и ДНК</h3>
+        <p id="geneticsText">Узнай, как ДНК хранит генетическую информацию и как наследуются некоторые признаки.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🧴</div>
+        <h3 id="skinTitle">Кожа и дерматология</h3>
+        <p id="skinText">Изучи строение кожи, её защитные функции и основы научного подхода к здоровью кожи.</p>
+      </article>
+    </div>
+  </section>
 
-<section id="about">
-  <h2 id="aboutTitle">О проекте MedGuide</h2>
-  <p id="aboutText">MedGuide — образовательная платформа для подростков, которая помогает изучать анатомию и основы здоровья на трёх языках.</p>
-  <p id="disclaimer">Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.</p>
-</section>
+  <section class="soft" id="quiz">
+    <h2 id="quizTitle">Проверь свои знания</h2>
+    <div class="panel">
+      <p id="question">Какой орган перекачивает кровь по организму?</p>
+      <div id="answers">
+        <button data-answer="wrong" id="option1">Лёгкие</button>
+        <button data-answer="right" id="option2">Сердце</button>
+        <button data-answer="wrong" id="option3">Желудок</button>
+      </div>
+      <p id="result" aria-live="polite"></p>
+      <button id="retry" hidden>Попробовать ещё раз</button>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 id="aboutTitle">О проекте MedGuide</h2>
+    <p class="section-intro" id="aboutText">MedGuide — образовательный проект для подростков, которые хотят понятным языком изучать анатомию, биологию и основы здоровья на казахском, русском и английском языках.</p>
+    <div class="card">
+      <strong id="disclaimerTitle">Важное примечание</strong>
+      <p id="disclaimer">Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.</p>
+    </div>
+  </section>
 </main>
 
-<footer>MedGuide · Learn. Explore. Understand.</footer>
-</body>
-<section id="library">
-  <h2 id="libraryTitle">Медицинская библиотека</h2>
-  <p id="libraryIntro">Изучай системы человеческого организма простым языком.</p>
-  <div class="cards">
-    <article class="card">
-      <h3 id="nervous">Нервная система</h3>
-      <p id="nervousText">Мозг, спинной мозг и нервы передают информацию.</p>
-    </article>
-    <article class="card">
-      <h3 id="heart">Сердечно-сосудистая система</h3>
-      <p id="heartText">Сердце и сосуды доставляют кислород и питательные вещества.</p>
-    </article>
-    <article class="card">
-      <h3 id="lungs">Дыхательная система</h3>
-      <p id="lungsText">Лёгкие помогают получать кислород и удалять углекислый газ.</p>
-    </article>
-  </div>
-</section>
+<footer>
+  <strong>MedGuide</strong> · <span id="footerText">Изучай. Исследуй. Понимай.</span>
+  <p class="small">© 2026 MedGuide · <span id="footerNote">Образовательный проект</span></p>
+</footer>
 
-<section id="quiz">
-  <h2 id="quizTitle">Проверь свои знания</h2>
-  <div class="panel">
-    <p id="question">Какой орган перекачивает кровь по организму?</p>
-    <button onclick="answer(false)" id="wrong">Лёгкие</button>
-    <button onclick="answer(true)" id="right">Сердце</button>
-    <button onclick="answer(false)" id="wrong2">Желудок</button>
-    <p id="result"></p>
-  </div>
-</section>
-
-<section id="about">
-  <h2 id="aboutTitle">О проекте MedGuide</h2>
-  <p id="aboutText">MedGuide — образовательная платформа для подростков, которая помогает изучать анатомию и основы здоровья на трёх языках.</p>
-  <p id="disclaimer">Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.</p>
-</section>
-</main>
-
-<footer>MedGuide · Learn. Explore. Understand.</footer>
-</body>
 <script>
 const translations = {
-ru: {
-title:"Понимай своё здоровье",
-intro:"Изучай человеческое тело и медицинскую науку вместе с MedGuide.",
-start:"Начать изучение",
-libraryTitle:"Медицинская библиотека",
-libraryIntro:"Изучай системы человеческого организма простым языком.",
-nervous:"Нервная система",
-nervousText:"Мозг, спинной мозг и нервы передают информацию.",
-heart:"Сердечно-сосудистая система",
-heartText:"Сердце и сосуды доставляют кислород и питательные вещества.",
-lungs:"Дыхательная система",
-lungsText:"Лёгкие помогают получать кислород и удалять углекислый газ.",
-quizTitle:"Проверь свои знания",
-question:"Какой орган перекачивает кровь по организму?",
-wrong:"Лёгкие",right:"Сердце",wrong2:"Желудок",
-aboutTitle:"О проекте MedGuide",
-aboutText:"MedGuide — образовательная платформа для подростков, изучающих анатомию и здоровье.",
-disclaimer:"Материалы предназначены для обучения и не заменяют консультацию врача.",
-correct:"Правильно! Сердце перекачивает кровь.",
-incorrect:"Попробуй ещё раз!"
-},
-en: {
-title:"Understand Your Health",
-intro:"Explore the human body and medical science with MedGuide.",
-start:"Start learning",
-libraryTitle:"Medical Library",
-libraryIntro:"Explore the human body in simple language.",
-nervous:"Nervous System",
-nervousText:"The brain, spinal cord and nerves transmit information.",
-heart:"Cardiovascular System",
-heartText:"The heart and vessels transport oxygen and nutrients.",
-lungs:"Respiratory System",
-lungsText:"The lungs help the body take in oxygen and remove carbon dioxide.",
-quizTitle:"Test Your Knowledge",
-question:"Which organ pumps blood around the body?",
-wrong:"Lungs",right:"Heart",wrong2:"Stomach",
-aboutTitle:"About MedGuide",
-aboutText:"MedGuide is an educational platform for teenagers learning about anatomy and health.",
-disclaimer:"These materials are for education and do not replace medical advice.",
-correct:"Correct! The heart pumps blood.",
-incorrect:"Try again!"
-},
-kz: {
-title:"Өз денсаулығыңды түсін",
-intro:"Адам ағзасы мен медицина ғылымын MedGuide арқылы зертте.",
-start:"Оқуды бастау",
-libraryTitle:"Медициналық кітапхана",
-libraryIntro:"Адам ағзасын қарапайым тілмен зертте.",
-nervous:"Жүйке жүйесі",
-nervousText:"Ми, жұлын және жүйкелер ақпаратты жеткізеді.",
-heart:"Жүрек-қан тамырлары жүйесі",
-heartText:"Жүрек пен қан тамырлары оттегі мен қоректік заттарды тасымалдайды.",
-lungs:"Тыныс алу жүйесі",
-lungsText:"Өкпе оттегін қабылдап, көмірқышқыл газын шығаруға көмектеседі.",
-quizTitle:"Біліміңді тексер",
-question:"Қанды бүкіл ағзаға айдайтын мүше қайсы?",
-wrong:"Өкпе",right:"Жүрек",wrong2:"Асқазан",
-aboutTitle:"MedGuide жобасы туралы",
-aboutText:"MedGuide — жасөспірімдерге анатомия мен денсаулықты үйрететін білім беру платформасы.",
-disclaimer:"Материалдар білім алуға арналған және дәрігер кеңесін алмастырмайды.",
-correct:"Дұрыс! Жүрек қанды айдайды.",
-incorrect:"Қайталап көр!"
-}
+  ru: {
+    navHome:"Главная", navLibrary:"Библиотека", navQuiz:"Тест", navAbout:"О проекте",
+    languageLabel:"Язык", heroTitle:"Понимай своё здоровье",
+    heroText:"Изучай человеческое тело, открывай медицинскую науку и проверяй свои знания вместе с MedGuide.",
+    heroButton:"Начать изучение →", libraryTitle:"Медицинская библиотека",
+    libraryIntro:"Познакомься с основными системами организма. Это начало большой библиотеки MedGuide.",
+    brainTitle:"Нервная система", brainText:"Мозг, спинной мозг и нервы помогают организму получать информацию и отвечать на изменения вокруг.",
+    heartTitle:"Сердечно-сосудистая система", heartText:"Сердце перекачивает кровь, а кровеносные сосуды доставляют кислород и питательные вещества.",
+    lungsTitle:"Дыхательная система", lungsText:"Дыхательная система помогает получать кислород и удалять углекислый газ.",
+    bonesTitle:"Скелетная система", bonesText:"Кости поддерживают тело, защищают некоторые органы и вместе с мышцами помогают двигаться.",
+    geneticsTitle:"Генетика и ДНК", geneticsText:"Узнай, как ДНК хранит генетическую информацию и как наследуются некоторые признаки.",
+    skinTitle:"Кожа и дерматология", skinText:"Изучи строение кожи, её защитные функции и основы научного подхода к здоровью кожи.",
+    quizTitle:"Проверь свои знания", question:"Какой орган перекачивает кровь по организму?",
+    option1:"Лёгкие", option2:"Сердце", option3:"Желудок",
+    correct:"Правильно! Сердце перекачивает кровь.", incorrect:"Не совсем. Попробуй ещё раз!",
+    retry:"Попробовать ещё раз", aboutTitle:"О проекте MedGuide",
+    aboutText:"MedGuide — образовательный проект для подростков, которые хотят понятным языком изучать анатомию, биологию и основы здоровья на казахском, русском и английском языках.",
+    disclaimerTitle:"Важное примечание", disclaimer:"Материалы предназначены для обучения и не заменяют консультацию медицинского специалиста.",
+    footerText:"Изучай. Исследуй. Понимай.", footerNote:"Образовательный проект"
+  },
+  kz: {
+    navHome:"Басты бет", navLibrary:"Кітапхана", navQuiz:"Тест", navAbout:"Жоба туралы",
+    languageLabel:"Тіл", heroTitle:"Өз денсаулығыңды түсін",
+    heroText:"Адам ағзасын зертте, медицина ғылымымен таныс және MedGuide арқылы біліміңді тексер.",
+    heroButton:"Оқуды бастау →", libraryTitle:"Медициналық кітапхана",
+    libraryIntro:"Ағзаның негізгі жүйелерімен таныс. Бұл — MedGuide кітапханасының бастамасы.",
+    brainTitle:"Жүйке жүйесі", brainText:"Ми, жұлын және жүйкелер ақпаратты қабылдауға және қоршаған ортадағы өзгерістерге жауап беруге көмектеседі.",
+    heartTitle:"Жүрек-қан тамырлары жүйесі", heartText:"Жүрек қанды айдайды, ал қан тамырлары оттегі мен қоректік заттарды тасымалдайды.",
+    lungsTitle:"Тыныс алу жүйесі", lungsText:"Тыныс алу жүйесі оттегін қабылдауға және көмірқышқыл газын шығаруға көмектеседі.",
+    bonesTitle:"Қаңқа жүйесі", bonesText:"Сүйектер денеге тірек болады, кейбір мүшелерді қорғайды және бұлшықеттермен бірге қозғалысқа көмектеседі.",
+    geneticsTitle:"Генетика және ДНҚ", geneticsText:"ДНҚ генетикалық ақпаратты қалай сақтайтынын және кейбір белгілердің қалай тұқым қуалайтынын зертте.",
+    skinTitle:"Тері және дерматология", skinText:"Терінің құрылымын, қорғаныш қызметін және тері денсаулығына ғылыми көзқарасты зертте.",
+    quizTitle:"Біліміңді тексер", question:"Қанды бүкіл ағзаға айдайтын мүше қайсы?",
+    option1:"Өкпе", option2:"Жүрек", option3:"Асқазан",
+    correct:"Дұрыс! Жүрек қанды айдайды.", incorrect:"Дұрыс емес. Қайталап көр!",
+    retry:"Қайта көру", aboutTitle:"MedGuide жобасы туралы",
+    aboutText:"MedGuide — анатомияны, биологияны және денсаулық негіздерін қазақ, орыс және ағылшын тілдерінде түсінікті түрде үйренуге арналған жасөспірімдерге арналған білім беру жобасы.",
+    disclaimerTitle:"Маңызды ескерту", disclaimer:"Материалдар білім алуға арналған және медицина маманының кеңесін алмастырмайды.",
+    footerText:"Үйрен. Зертте. Түсін.", footerNote:"Білім беру жобасы"
+  },
+  en: {
+    navHome:"Home", navLibrary:"Library", navQuiz:"Quiz", navAbout:"About",
+    languageLabel:"Language", heroTitle:"Understand Your Health",
+    heroText:"Explore the human body, discover medical science and test your knowledge with MedGuide.",
+    heroButton:"Start learning →", libraryTitle:"Medical Library",
+    libraryIntro:"Explore the main systems of the human body. This is the beginning of the MedGuide learning library.",
+    brainTitle:"Nervous System", brainText:"The brain, spinal cord and nerves help the body receive information and respond to changes around it.",
+    heartTitle:"Cardiovascular System", heartText:"The heart pumps blood, while blood vessels transport oxygen and nutrients.",
+    lungsTitle:"Respiratory System", lungsText:"The respiratory system helps the body take in oxygen and remove carbon dioxide.",
+    bonesTitle:"Skeletal System", bonesText:"Bones support the body, protect some organs and work with muscles to help movement.",
+    geneticsTitle:"Genetics and DNA", geneticsText:"Learn how DNA stores genetic information and how some traits are inherited.",
+    skinTitle:"Skin and Dermatology", skinText:"Explore the structure of the skin, its protective functions and a scientific approach to skin health.",
+    quizTitle:"Test Your Knowledge", question:"Which organ pumps blood around the body?",
+    option1:"Lungs", option2:"Heart", option3:"Stomach",
+    correct:"Correct! The heart pumps blood.", incorrect:"Not quite. Try again!",
+    retry:"Try again", aboutTitle:"About MedGuide",
+    aboutText:"MedGuide is an educational project for teenagers who want to learn about anatomy, biology and health in simple language in Kazakh, Russian and English.",
+    disclaimerTitle:"Important note", disclaimer:"These materials are for education and do not replace advice from a medical professional.",
+    footerText:"Learn. Explore. Understand.", footerNote:"Educational project"
+  }
 };
 
-let currentLanguage = "ru";
+const languageSelect = document.getElementById("language");
+const textIds = Object.keys(translations.ru);
 
-function changeLanguage(lang) {
-  currentLanguage = lang;
-  document.documentElement.lang = lang === "kz" ? "kk" : lang;
-  Object.keys(translations[lang]).forEach(id => {
+function changeLanguage(language) {
+  const dictionary = translations[language] || translations.ru;
+  document.documentElement.lang = language === "kz" ? "kk" : language;
+
+  textIds.forEach(id => {
     const element = document.getElementById(id);
-    if (element) element.textContent = translations[lang][id];
+    if (element) element.textContent = dictionary[id];
   });
+
   document.getElementById("result").textContent = "";
+  document.getElementById("retry").hidden = true;
 }
 
-document.getElementById("language").addEventListener("change", function() {
-  changeLanguage(this.value);
+languageSelect.addEventListener("change", event => {
+  changeLanguage(event.target.value);
 });
 
-function answer(correct) {
-  const t = translations[currentLanguage];
-  document.getElementById("result").textContent =
-    correct ? t.correct : t.incorrect;
-}
+let answered = false;
+
+document.querySelectorAll("[data-answer]").forEach(button => {
+  button.addEventListener("click", () => {
+    if (answered) return;
+    answered = true;
+
+    const language = languageSelect.value;
+    const correct = button.dataset.answer === "right";
+    document.getElementById("result").textContent =
+      translations[language][correct ? "correct" : "incorrect"];
+
+    document.querySelectorAll("[data-answer]").forEach(option => {
+      option.disabled = true;
+    });
+
+    if (!correct) {
+      document.getElementById("retry").hidden = false;
+    }
+  });
+});
+
+document.getElementById("retry").addEventListener("click", () => {
+  answered = false;
+  document.getElementById("result").textContent = "";
+  document.querySelectorAll("[data-answer]").forEach(option => {
+    option.disabled = false;
+  });
+  document.getElementById("retry").hidden = true;
+});
+
+changeLanguage("ru");
 </script>
-
-
-
+</body>
 </html>
